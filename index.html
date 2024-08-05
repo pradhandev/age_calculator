@@ -91,15 +91,22 @@ function calculateAge() {
     const dob = new Date(document.getElementById('dob').value);
     const now = new Date();
 
+    if(dob > now){
+        document.getElementById('result').innerText = "You can't count the future." // For future 
+        return;
+    }
+
     let years = now.getFullYear() - dob.getFullYear();
     let months = now.getMonth() - dob.getMonth();
     let days = now.getDate() - dob.getDate();
 
+    // Adjust for days in the previous month
     if (days < 0) {
         months--;
-        days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); // Adjust for days in the previous month
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
     }
-
+    // Adjust for months in the previous year
     if (months < 0) {
         years--;
         months += 12;
