@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(/stars-5442598_1920.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+}
+
+.container {
+    background-color: rgba(11, 204, 207, 0.362);
+    padding: 20px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(4, 5, 7, 0.9);
+    text-align: center;
+    width: 400px;
+    color: aliceblue;
+}
+
+h1,form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="date"] {
+    padding: 8px ;
+    margin-bottom: 20px;
+    width: 80%;
+    border-radius: 20px;
+    background: transparent;
+    color: aliceblue;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 0 10px rgba(5, 5, 5, 0.9);
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ffd500;
+    color: rgb(255, 250, 250);
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #12e675;
+}
+
+#result {
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: aliceblue;
+    font-weight: bolder;
+}
+
+    </style>
+    <title>Age Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Age Calculator</h1>
+        <form id="ageForm">
+            <label for="dob">Enter your date of birth:</label>
+            <input type="date" id="dob" required>
+            <button type="submit">Calculate Age</button>
+        </form>
+        <p id="result"></p>
+    </div>
+    <script>
+        document.getElementById('ageForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    calculateAge();
+});
+
+function calculateAge() {
+    const dob = new Date(document.getElementById('dob').value);
+    const now = new Date();
+
+    let years = now.getFullYear() - dob.getFullYear();
+    let months = now.getMonth() - dob.getMonth();
+    let days = now.getDate() - dob.getDate();
+
+    if (days < 0) {
+        months--;
+        days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); // Adjust for days in the previous month
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    document.getElementById('result').innerText = `Your age is ${years} years, ${months} months, and ${days} days.`;
+}
+
+    </script>
+</body>
+</html>
