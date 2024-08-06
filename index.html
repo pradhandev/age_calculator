@@ -87,6 +87,10 @@ button:hover {
     calculateAge();
 });
 
+// Example
+// Current Date: August 5, 2024
+// Date of Birth: July 10, 1990
+
 function calculateAge() {
     const dob = new Date(document.getElementById('dob').value);
     const now = new Date();
@@ -96,15 +100,15 @@ function calculateAge() {
         return;
     }
 
-    let years = now.getFullYear() - dob.getFullYear();
-    let months = now.getMonth() - dob.getMonth();
-    let days = now.getDate() - dob.getDate();
+    let years = now.getFullYear() - dob.getFullYear(); // 2024 - 1990 = 34
+    let months = now.getMonth() - dob.getMonth();// 8 - 7 = 1 (August is month 8, July is month 7)
+    let days = now.getDate() - dob.getDate();// 5 - 10 = -5
 
     // Adjust for days in the previous month
     if (days < 0) {
         months--;
-        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prevMonth.getDate();
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0); // Get the last day of the previous month (July 31, 2024).Ex
+        days += prevMonth.getDate();// -5 + 31 = 26
     }
     // Adjust for months in the previous year
     if (months < 0) {
